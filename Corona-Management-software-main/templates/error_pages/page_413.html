@@ -1,0 +1,10 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<br>
+<center> <h2 class="welcome"> Request is too big (413) </h2> </center>
+{% endblock %} 
+{% block body %} 
+{{ super() }} 
+<br>
+<p class="para"> Please check the file size you're uploading. </p>
+{% endblock %}

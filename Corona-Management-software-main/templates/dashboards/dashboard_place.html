@@ -1,0 +1,37 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<!-- <br>Welcome {{user}}! -->
+{% endblock %} 
+{% block body %} 
+{{ super() }}
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/qrcode.min.js"></script>
+<script src="/static/js/qrcode.js"></script>
+
+<center> <h2 class="welcome">Welcome {{user}} </h2> </center>
+<br> <br>
+
+<div class="container d-flex justify-content-center">
+    <div class="my-auto">
+        <div class="wrapper">
+            <div id="qrcode"></div>
+        </div>
+        <div class="row">
+            <a class="btn btn-primary download" id="download_qr" download>Download</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Display QRcode which is possible to be downloaded
+    var qrcode = new QRCode("qrcode"), qrstr = '{{qr}}';
+    qrcode.makeCode(qrstr);
+    onload = loaded;
+    
+    function loaded(){
+        document.getElementById("download_qr").setAttribute("href",document.getElementById("qrcode").lastChild.getAttribute("src"));
+    }
+</script>
+
+{% endblock %}

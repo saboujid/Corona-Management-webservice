@@ -1,0 +1,10 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<br>
+<center> <h2 class="welcome"> Unauthorized (401) </h2> </center>
+{% endblock %} 
+{% block body %} 
+{{ super() }} 
+<br>
+<p class="para"> You're not allowed to access. </p>
+{% endblock %}

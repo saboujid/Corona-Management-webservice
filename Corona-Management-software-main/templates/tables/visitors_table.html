@@ -1,0 +1,39 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<!-- <br>Visitors List -->
+{% endblock %}
+{% block body %} 
+{{ super() }} 
+
+<center> <h2 class="welcome">Visitors List </h2> </center>
+<br>
+
+<!-- Display visitors list -->
+<table class = "table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Infection status</th>
+        </tr>
+    </thead>    
+    <tbody>
+        {% for row in vdata %}    
+            <tr>
+              <td>{{row[3]}}</td>
+              <td>{{row[4]}}</td>
+              <td>{{row[6]}}</td>
+              <td>{{row[7]}}</td>
+              {% if row[9] == 0 %}
+              <td>Not infected</td>
+              {% else %}
+              <td>Infected</td>
+              {% endif %}
+            </tr>
+        {% endfor %}
+      </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<br>
+<center> <h2 class="welcome"> Method not allowed (405) </h2> </center>
+{% endblock %} 
+{% block body %} 
+{{ super() }} 
+<br>
+<p class="para"> The method of your request is not allowed. </p>
+{% endblock %}

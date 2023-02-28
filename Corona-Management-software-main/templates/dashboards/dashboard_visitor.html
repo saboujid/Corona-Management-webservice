@@ -1,0 +1,19 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<!-- <br>Welcome {{user}} -->
+{% endblock %}
+{% block body %} 
+{{ super() }} 
+
+<center> <h2 class="welcome">Welcome {{user}} </h2> </center>
+<br> <br> <br>
+
+<div class="wrapper">
+    <center>
+    <div class="para">
+        <a href="/scan">Scan QR</a>
+    </div>
+    </center>
+</div>
+
+{% endblock %}

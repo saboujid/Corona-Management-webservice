@@ -1,0 +1,59 @@
+
+{% extends "layout.html" %} 
+{% block page_title %}
+<!-- <br>Search -->
+{% endblock %}
+{% block body %} 
+    {{ super() }} 
+
+    {% if result %}
+        <div class="container">
+            <center> <h2 class="welcome">All visitors that visited {{place}}
+                between {{ datefrom }} and {{ dateto }} </h2> </center>
+            <br>
+
+            <!-- Display visitor's visit details list -->
+            <table class = "table">
+            <thead>
+                <tr>
+                    <th>Visitor</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                    <th>Entry time</th>
+                    <th>Exit time</th>
+                </tr>
+            </thead>    
+            <tbody>
+                {% for row in result %}    
+                    <tr>
+                        <td>{{row[0]}}</td>
+                        <td>{{row[3]}}</td>
+                        {% if not row[1] %}
+                        <td>{{row[2]}}</td>
+                        {% else %}
+                        <td>{{row[1]}}</td>
+                        {% endif %}
+                        <td>{{row[4]}}</td>
+                        <td>{{row[5]}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br />
+            
+            <a class="btn btn-dark btn-large" href="/place_visit">Back</a>
+        </div>
+    {% else %}
+    <br />
+    <div class="container" style="background-color: rgba(221, 227, 221, 0.913); text-align: center;">
+       <br />
+        <h3><b>There weren't any visitors to {{place}} between 
+            {{ datefrom }} and {{ dateto }}.
+        </b></h3>
+        
+    <a class="btn btn-dark btn-large" href="/visitor_visit">Back</a>
+    </div>
+
+    {% endif %}
+
+{% endblock %}

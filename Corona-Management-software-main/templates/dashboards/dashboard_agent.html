@@ -1,0 +1,22 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<!-- <br>Welcome Agent! -->
+{% endblock %} 
+{% block body %} 
+{{ super() }}
+
+<center> <h2 class="welcome">Welcome Agent </h2> </center>
+<br>
+<br>
+
+<center>
+<div>
+    <a class = "btn" href="{{url_for('hospital_table')}}">Hospitals verfication</a> <br>
+    <a class = "btn" href="{{url_for('visitors_table')}}">List of Visitors</a> <br>
+    <a class = "btn" href="{{url_for('places_table')}}">List of Places</a> <br>
+    <a class = "btn" href="{{url_for('visitor_visit')}}">Search Visits by Visitor</a> <br>
+    <a class = "btn" href="{{url_for('place_visit')}}">Search Visits to Place</a> <br>
+</div>
+</center>
+
+{% endblock %}

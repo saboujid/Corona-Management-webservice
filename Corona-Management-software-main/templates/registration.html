@@ -1,0 +1,169 @@
+{% extends "layout.html" %} {% block page_title %}{% endblock %} {% block body %}
+
+<div class="container h-100 d-flex justify-content-center">
+    <div class="jumbotron my-auto">
+        <div class="wrapper">
+            <h2>Sign Up</h2>
+
+
+
+            {% if session.get("login_form_selector", None) == "Visitor" %}
+            <!-- VISITOR FORM -->
+            <p>Please fill this form to create an account.</p>
+            <form action="/register_visitor" method="post">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-control " value="" placeholder="ex. John Doe" pattern="([A-z\s]+)" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control " value="" placeholder="ex. johndoe12" pattern="^\S+$" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea name="address" class="form-control " value="" placeholder="Street 00&#10;City 00000&#10;Country"  rows="4" cols="50" required></textarea>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <table class="form-group w-100">
+                    <tr>
+                        <td>
+                            <input type="radio" id="email" name="contact_type" onclick="contactChange('email')" value="email"checked>
+                            <label for="email">Email</label>
+                        </td>
+                        
+                        <td>
+                            <input type="radio" id="phone" name="contact_type" onclick="contactChange('phone')" value="phone">
+                            <label for="phone">Phone</label>
+                        </td>
+                        
+                        <td>
+                            <input type="radio" id="both" name="contact_type" onclick="contactChange('both')" value="both">
+                            <label for="both">Both</label>
+                        </td>
+                    </tr>
+                <table>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" name="phone" id="phone_input" class="form-control disableable" value="" pattern="+[0-9]{2} [0-9]{10}" placeholder="ex. +00 0000000000" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" id="email_input" class="form-control disableable" value="" placeholder="ex. abc@xyz.efg" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <script>
+                    document.getElementById("email_input").removeAttribute("disabled","");
+                    document.getElementById("email_input").setAttribute("enabled","");
+                    document.getElementById("phone_input").removeAttribute("enabled","");
+                    document.getElementById("phone_input").setAttribute("disabled","");
+                    function contactChange(ctype){
+                        if (ctype=="email"){
+                            document.getElementById("email_input").removeAttribute("disabled","");
+                            document.getElementById("email_input").setAttribute("enabled","");
+                            document.getElementById("phone_input").removeAttribute("enabled","");
+                            document.getElementById("phone_input").setAttribute("disabled","");
+                        }
+                        else if (ctype=="phone"){
+                            document.getElementById("email_input").removeAttribute("enabled","");
+                            document.getElementById("email_input").setAttribute("disabled","");
+                            document.getElementById("phone_input").removeAttribute("disabled","");
+                            document.getElementById("phone_input").setAttribute("enabled","");
+                        }
+                        else if (ctype=="both"){
+                            document.getElementById("email_input").removeAttribute("disabled","");
+                            document.getElementById("email_input").setAttribute("enabled","");
+                            document.getElementById("phone_input").removeAttribute("disabled","");
+                            document.getElementById("phone_input").setAttribute("enabled","");
+                        }
+                    }
+                </script>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" class="form-control " value="" placeholder="Password" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                
+                <div>
+                    <input type="hidden" id="deviceid" name="deviceid" class="form-control " placeholder="" value="">
+                    <span class="invalid-feedback"></span>
+                    <script>
+                        const uuid = URL.createObjectURL(new Blob([])).split('/').pop();
+                        document.getElementById("deviceid").setAttribute("value",uuid);
+                    </script>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Submit" onlick="submitv()"> 
+                    <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                </div>
+                <script>
+                    function submitv(){
+                        document.cookie = "deviceid="+uuid+"; expires=Thu, 1 Jan 2024 12:00:00 UTC; path=/";
+                    }
+                </script> 
+                <p>Already have an account? <a href="{{ url_for( 'login_visitor_page') }}">Login here</a>.</p>
+            </form>
+            {% endif %} 
+            
+            
+            {% if session.get("login_form_selector", None) == "Hospital" %}
+            <!-- HOSPITAL FORM -->
+            <p>Please fill this form to create an account to register your Hospital.</p>
+            <form action="/register_hospital" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control " value="" pattern="^\S+$" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" class="form-control " value="" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                    <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                </div>
+                <p>Already have an account? <a href="{{ url_for( 'login_hospital_page') }}">Login here</a>.</p>
+            </form>
+            {% endif %} 
+            
+            
+            {% if session.get("login_form_selector", None) == "Place" %}
+            <!-- PLACE FORM -->
+            <p>Please fill this form to create an account to register your organization</p>
+            <form action="/register_place" method="post">
+                <div class="form-group">
+                    <label>Name of place</label>
+                    <input type="text" name="name" class="form-control " value="" placeholder="ex. John Doe" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control " value="" placeholder="ex. johndoe12" pattern="^\S+$" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea name="address" class="form-control " value="" placeholder="Street 00&#10;City 00000&#10;Country"  rows="4" cols="50" required></textarea>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" class="form-control " value="" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                    <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                </div>
+                <p>Already have an account? <a href="{{ url_for( 'login_place_page') }}">Login here</a>.</p>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

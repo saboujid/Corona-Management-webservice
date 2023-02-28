@@ -1,0 +1,98 @@
+{% extends "layout.html" %} {% block page_title %}{% endblock %} {% block body %}
+
+<div class="container h-100 d-flex justify-content-center">
+    <div class="jumbotron my-auto">
+
+        <div class="wrapper">
+            <h2>Login</h2>
+            <!-- The person who is logging in is a VISITOR -->
+            {% if session.get("login_form_selector", None) == "Visitor" %}
+            <p>Please fill in your credentials to login Visitor.</p>
+            <form action="/login_visitor" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Username" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" placeholder="Password" class="form-control" required>
+                </div>
+
+                <input type="hidden" name="type" value="Visitor">
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Login">
+                </div>
+
+                <p>Don't have an account? <a href="{{url_for('register_visitor_page')}}">Sign up now</a>.</p>
+            </form>
+            {% endif %} {% if session.get("login_form_selector", None) == "Hospital" %}
+            <!-- The person who is logging in is a HOSPITAL -->
+            <p>Please fill in your credentials to login Hospital.</p>
+            <form action="/login_hospital" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Username" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" placeholder="Password" class="form-control" required>
+                </div>
+
+                <input type="hidden" name="type" value="Hospital">
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Login">
+                </div>
+
+                <p>Don't have an account? <a href="{{url_for('register_hospital_page')}}">Sign up now</a>.</p>
+            </form>
+            {% endif %} {% if session.get("login_form_selector", None) == "Place" %}
+            <!-- The person who is logging in is a PLACE -->
+            <p>Please fill in your credentials to login Place.</p>
+            <form action="/login_place" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Username" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" placeholder="Password" class="form-control" required>
+                </div>
+
+                <input type="hidden" name="type" value="Place">
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Login" required>
+                </div>
+
+                <p>Don't have an account? <a href="{{url_for('register_place_page')}}">Sign up now</a>.</p>
+            </form>
+            {% endif %} {% if session.get("login_form_selector", None) == "Agent" %}
+            <!-- The person who is logging in is an AGENT -->
+            <p>Please fill in your credentials to login Agent.</p>
+            <form action="/login_agent" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Username" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" placeholder="Password" class="form-control" required>
+                </div>
+
+                <input type="hidden" name="type" value="Agent">
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Login">
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

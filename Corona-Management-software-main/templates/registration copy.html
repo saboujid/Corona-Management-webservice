@@ -1,0 +1,81 @@
+{% extends "layout.html" %} {% block page_title %}{% endblock %} {% block body %}
+
+<div class="container h-100 d-flex justify-content-center">
+    <div class="jumbotron my-auto">
+        <div class="wrapper">
+            <h2>Sign Up</h2>
+
+            {% if session.get("login_form_selector", None) == "Visitor" %}
+            <p>Please fill this form to create an account.</p>
+            <form action="/register_visitor" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control " value="">
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control " value="">
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" class="form-control " value="">
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" class="form-control " value="">
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                    <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                </div>
+                <p>Already have an account? <a href="index.html">Login here</a>.</p>
+            </form>
+            {% endif %} {% if session.get("login_form_selector", None) == "Hospital" %}
+            <p>Please fill this form to create an account to register your Hospital.</p>
+            <form action="/register_hospital" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control " value="">
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" class="form-control " value="">
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                    <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                </div>
+                <p>Already have an account? <a href="index.html">Login here</a>.</p>
+            </form>
+            {% endif %} {% if session.get("login_form_selector", None) == "Place" %}
+            <p>Please fill this form to create an account to register your organization</p>
+            <form action="/register_place" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control " value="">
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pw" class="form-control " value="">
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                    <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                </div>
+                <p>Already have an account? <a href="index.html">Login here</a>.</p>
+            </form>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

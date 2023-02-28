@@ -1,0 +1,44 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<!-- <br>Hospital Verification -->
+{% endblock %} 
+{% block body %} 
+{{ super() }}
+
+<center> <h2 class="welcome">Hospital Verification </h2> </center>
+<br>
+
+<div id="hospitals_list" class="hidden">{{hospitals}}</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Hospital Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody id="hospitals_table_body">
+        
+    </tbody>
+</table>
+
+<script>
+    // Display hospitals list
+    const d = document.getElementById("hospitals_table_body");
+    let hospital_list=document.getElementById("hospitals_list").innerHTML.split('[')[1].split(']')[0].split('),');
+    for(let i=0; i<hospital_list.length; i++){
+        hospital_list[i] = hospital_list[i].split('(')[1].split(',');
+        hospital_list[i][0] = hospital_list[i][0].split("'")[1];
+        hospital_list[i][1] = parseInt(hospital_list[i][1]);
+        let inf = hospital_list[i][1]? 'Verified': 'Unverified';
+        d.innerHTML += "<tr><th scope='row'>" + (i+1).toString() + "</th><td>" + hospital_list[i][0] + "</td><td id='h_" + hospital_list[i][0] + "'>" + inf + "</td><td><form action=\'/hospital_status_update\' method='POST'><input class='hidden' name='username' value='" + hospital_list[i][0] + "'/><input type='submit' class='btn btn-outline-success' style='background-color:rgb(35, 133, 85);' value='Verify'/></form></td>";
+    }
+
+    function reload(){
+        setTimeout(()=>{location.reload();}, 1000);
+    }
+</script>
+
+{% endblock %}

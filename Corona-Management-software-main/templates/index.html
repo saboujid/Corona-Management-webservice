@@ -1,0 +1,54 @@
+{% extends "layout.html" %} {% block body %}
+
+<div id="#top"></div>
+<section id="home">
+    <div class="carousel">
+        <div class="container text-dark">
+
+            <div class="countdown styled"></div>
+            <div class="text-center text-dark">
+                <h2 style="font-weight: 600; color: rgb(255, 255, 255); margin-left: 40%;">Welcome to Corona Archive</h2>
+
+            </div>
+        </div>
+</section>
+<br>
+<br>
+<br>
+<section id="services" class="page-section colord">
+    <div class="container align-content-center">
+        <div class="row align-content-center justify-content-center">
+            <!-- item -->
+            <div class="col-md-2 text-center m-2">
+                <h3>Become an <span class="id-color">Agent</span></h3>
+                <p>Send us an email with your request</p>
+            </div>
+            <!-- end: -->
+
+            <!-- item -->
+            <div class="col-md-2 text-center m-2">
+                <a href="{{ url_for( 'register_visitor_page') }}"><h3>Sign up as a <span class="id-color">Visitor</span></h3></a>
+                <p>Sign up right now to benefit from the Corona Archive App</p>
+            </div>
+            <!-- end: -->
+
+            <!-- item -->
+            <div class="col-md-2 text-center m-2">
+                <a href="{{ url_for( 'register_place_page') }}"><h3>Register your <span class="id-color">Place</span></h3></a>
+                <p>Register right now to benefit from the Corona Archive App</p>
+            </div>
+            <!-- end: -->
+
+            <!-- item -->
+            <div class="col-md-2 text-center m-2">
+                <a href="{{ url_for( 'register_hospital_page') }}"><h3>Register as a <span class="id-color">Hospital</span></h3></a>
+                <p>Register right now to benefit from the Corona Archive App</p>
+            </div>
+            <!-- end:-->
+        </div>
+    </div>
+    <!--/.container-->
+</section>
+
+
+{{ super() }} {% endblock %}

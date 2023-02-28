@@ -1,0 +1,36 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<!-- <br>Search -->
+{% endblock %}
+{% block body %} 
+{{ super() }} 
+
+<center> <h2 class="welcome"> Search </h2> </center>
+<br>
+<p class="para"> Find all the places where a visitor has been in an interval of time </p>
+
+<form action="/search" method="post">
+    <div class="form-group">
+        <label class="formco">Visitor name</label>
+        <input type="text" name="visitor_name" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label class="formco">Entry From:</label>
+        <input type="datetime-local" name="entry" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label class="formco">To:</label>
+        <input type="datetime-local" name="exit" class="form-control" required>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Search">
+    </div>
+
+</form>
+
+
+{% endblock %}

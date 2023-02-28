@@ -1,0 +1,47 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<!-- <br>Welcome Hospital -->
+{% endblock %} 
+{% block body %} 
+{{ super() }}
+
+<center> <h2 class="welcome">Welcome Hospital </h2> </center>
+<br>
+
+{%if status==0%}
+<h3 class="para">Your status is still under review! </h3> 
+{% endif %}
+{% if status==1 %}
+<div id="visitors_list" class="hidden">{{visitor}}</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Visitor Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody id="visitors_table_body">
+    </tbody>
+</table>
+
+<script>
+// Display visitors list
+const d = document.getElementById("visitors_table_body");
+let visitor_list=document.getElementById("visitors_list").innerHTML.split('[')[1].split(']')[0].split('),');
+for(let i=0; i<visitor_list.length; i++) {
+    visitor_list[i] = visitor_list[i].split('(')[1].split(',');
+    visitor_list[i][0] = visitor_list[i][0].split("'")[1];
+    visitor_list[i][1] = parseInt(visitor_list[i][1]);
+    let inf = visitor_list[i][1]? 'Infected': 'Not infected';
+    d.innerHTML += "<tr><th scope='row'>" + (i+1).toString() + "</th><td>" + visitor_list[i][0] + "</td><td id='h_" + visitor_list[i][0] + "'>" + inf + "</td><td><form class='frm' action=\'/visitors_status_update_positive\' method='POST'><input class='hidden' name='username' value='" + visitor_list[i][0] + "'/><input type='submit' class='btn btn-danger cbtn' value='Infected'/></form><form class='frm' action=\'/visitors_status_update_negative\' method='POST'><input class='hidden' name='username' value='" + visitor_list[i][0] + "'/><input type='submit' class='btn btn-success cbtn' value='Not Infected'/></form></td>";
+}
+
+function reload() {
+    setTimeout(()=>{location.reload();}, 1000);
+}
+</script>
+
+{% endif %}
+{% endblock %}

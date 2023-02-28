@@ -1,0 +1,28 @@
+{% extends "layout.html" %} 
+{% block page_title %}
+<!-- <br>Places List -->
+{% endblock %}
+{% block body %} 
+{{ super() }} 
+
+<center> <h2 class="welcome">Places List </h2> </center>
+<br>
+
+<!-- Display places list -->
+<table class = "table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+    </thead>    
+    <tbody>
+        {% for row in pdata %}    
+            <tr>
+              <td>{{row[3]}}</td>
+              <td>{{row[4]}}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+</table>
+{% endblock %}
